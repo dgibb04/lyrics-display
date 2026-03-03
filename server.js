@@ -4,47 +4,77 @@ const path = require('path');
 
 const PORT = 3000;
 
+// MIME types mapping
+const MIME_TYPES = {
+    '.html': 'text/html',
+    '.css': 'text/css',
+    '.js': 'application/javascript',
+    '.json': 'application/json',
+    '.txt': 'text/plain',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon',
+};
+
 const server = http.createServer((req, res) => {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
 
-    // Handle root path
-    if (req.url === '/') {
-        fs.readFile(path.join(__dirname, 'index.html'), 'utf8', (err, data) => {
-            if (err) {
-                res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('404 Not Found');
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.end(data);
-        });
+    // Normalize URL and prevent directory traversal
+    let urlPath = req.url;
+    if (urlPath === '/') {
+        urlPath = '/index.html';
+    }
+
+    // Prevent directory traversal attacks
+    const safePathName = path.normalize(urlPath).replace(/^(\.\.[\/\\])+/, '');
+    const filePath = path.join(__dirname, safePathName);
+
+    // Check if file path is within project directory
+    if (!filePath.startsWith(__dirname)) {
+        res.writeHead(403, { 'Content-Type': 'text/plain' });
+        res.end('403 Forbidden');
         return;
     }
 
-    // Handle CSS and JS files
-    if (req.url === '/style.css' || req.url === '/script.js' || req.url === '/lyrics.txt') {
-        const filePath = path.join(__dirname, req.url);
-        fs.readFile(filePath, 'utf8', (err, data) => {
-            if (err) {
+    // Try to read the file
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            if (err.code === 'ENOENT') {
                 res.writeHead(404, { 'Content-Type': 'text/plain' });
-                res.end('404 Not Found');
-                return;
+                res.end('404 Not Found: ' + urlPath);
+                console.error(`404: ${urlPath}`);
+            } else if (err.code === 'EISDIR') {
+                // If it's a directory, try to serve index.html from that directory
+                const indexPath = path.join(filePath, 'index.html');
+                fs.readFile(indexPath, (indexErr, indexData) => {
+                    if (indexErr) {
+                        res.writeHead(404, { 'Content-Type': 'text/plain' });
+                        res.end('404 Not Found: ' + urlPath);
+                    } else {
+                        res.writeHead(200, { 'Content-Type': 'text/html' });
+                        res.end(indexData);
+                    }
+                });
+            } else {
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('500 Internal Server Error');
+                console.error('Server error:', err);
             }
+            return;
+        }
 
-            let contentType = 'text/plain';
-            if (req.url.endsWith('.css')) contentType = 'text/css';
-            if (req.url.endsWith('.js')) contentType = 'application/javascript';
+        // Determine MIME type
+        const ext = path.extname(filePath).toLowerCase();
+        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(data);
-        });
-        return;
-    }
-
-    // 404 for other paths
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('404 Not Found');
+        // Send file
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(data);
+    });
 });
 
 server.listen(PORT, () => {

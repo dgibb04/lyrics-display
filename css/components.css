@@ -1,0 +1,96 @@
+/* Amazing Grace - Components */
+/* UI component styling (buttons, badges, etc.) */
+
+/* Primary Button Styling */
+.btn {
+    padding: 13px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    background: linear-gradient(135deg, var(--grace-medium), var(--grace-light));
+    color: white;
+    min-width: 130px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(74, 107, 122, 0.2);
+}
+
+/* Button shine effect on click */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    pointer-events: none;
+}
+
+.btn:active::before {
+    width: 280px;
+    height: 280px;
+}
+
+/* Button Hover State */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 107, 122, 0.3);
+}
+
+/* Button Active State */
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Button Disabled State */
+.btn:disabled {
+    background: var(--grace-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow-light);
+    opacity: 0.6;
+}
+
+/* Play Button - Special styling */
+.play-btn {
+    background: linear-gradient(135deg, var(--grace-gold), #d4a574);
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+    color: var(--grace-dark);
+    font-weight: 700;
+}
+
+.play-btn:hover {
+    box-shadow: 0 8px 24px rgba(201, 169, 97, 0.4);
+    background: linear-gradient(135deg, #d4b860, #deb87d);
+}
+
+/* Line Number Badge */
+.line-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 32px;
+    flex-shrink: 0;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.lyric-container.updating .line-number {
+    transform: scale(1.12);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Keyboard Hints Styling */
+.keyboard-hints .hint {
+    background: var(--bg-subtle);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    display: inline-block;
+    margin: 0 4px;
+}

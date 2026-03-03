@@ -1,0 +1,81 @@
+/* Amazing Grace - Animations */
+/* Keyframe animations and transition definitions */
+
+/* Lyric Line Fade-In Animation */
+.lyric-line.fade-in {
+    animation: fadeInGrace 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes fadeInGrace {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtle Shimmer Effect on Lyric Background */
+.lyric-line::before {
+    animation: shimmerGrace 4s ease-in-out infinite;
+}
+
+@keyframes shimmerGrace {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Playing State - Pulse Animation */
+.play-btn.playing {
+    background: linear-gradient(135deg, #d4a574, #c9956f);
+    animation: gracePulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    box-shadow: 0 4px 16px rgba(201, 169, 97, 0.5);
+}
+
+@keyframes gracePulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(201, 169, 97, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(201, 169, 97, 0.6);
+    }
+}
+
+/* Music Bar Animation on Play Button */
+.play-btn.playing::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 2px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    transform: translateY(-50%);
+    animation: graceMusic 0.7s ease-in-out infinite;
+}
+
+@keyframes graceMusic {
+    0%, 100% {
+        height: 8px;
+    }
+    50% {
+        height: 14px;
+    }
+}
+
+/* Gentle Float Animation for Background Elements */
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+}

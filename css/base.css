@@ -1,0 +1,137 @@
+/* Amazing Grace - Base Styles */
+/* Global resets, CSS variables, and foundational styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette - Spiritual & Grace-inspired */
+    --grace-dark: #1a2e3a;
+    --grace-medium: #4a6b7a;
+    --grace-light: #8ba8b8;
+    --grace-cream: #f5f3f0;
+    --grace-gold: #c9a961;
+    --grace-soft-blue: #a8c5d9;
+    --grace-accent: #d4af37;
+    --spiritual-warm: #d9cdc4;
+
+    /* Text Colors */
+    --text-dark: #2c3e50;
+    --text-light: #5a6f7d;
+    --text-secondary: #6b7280;
+
+    /* Background Colors */
+    --bg-light: #f9fafb;
+    --bg-subtle: #faf8f6;
+    --bg-card: #ffffff;
+
+    /* Borders & Dividers */
+    --border-subtle: #e5e7eb;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(26, 46, 58, 0.05);
+    --shadow-light: 0 2px 8px rgba(26, 46, 58, 0.08);
+    --shadow-md: 0 8px 24px rgba(26, 46, 58, 0.12);
+    --shadow-lg: 0 20px 40px rgba(26, 46, 58, 0.15);
+
+    /* Transitions & Animation */
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(180deg, #e8dfd7 0%, #d5ccc4 25%, #c9beb6 75%, #bfb4ac 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text-dark);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Soft light rays effect - background atmosphere */
+body::before {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: gentleFloat 25s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -40%;
+    right: -15%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(168, 197, 217, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: gentleFloat 30s ease-in-out infinite reverse;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+}
+
+.container {
+    background: linear-gradient(135deg, var(--grace-cream) 0%, var(--bg-subtle) 100%);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    padding: 50px 40px;
+    max-width: 700px;
+    width: 100%;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    position: relative;
+    backdrop-filter: blur(8px);
+}
+
+/* Decorative top border - like a page divider */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--grace-gold), var(--grace-gold), transparent);
+    border-radius: 20px 20px 0 0;
+}
+
+/* Corner ornament */
+.container::after {
+    content: '✦';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--grace-gold);
+    font-size: 20px;
+    opacity: 0.6;
+}
+
+/* Smooth transitions for dynamic elements */
+.lyric-line {
+    will-change: transform, opacity;
+}

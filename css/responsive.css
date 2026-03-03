@@ -1,0 +1,267 @@
+/* Amazing Grace - Responsive Design */
+/* Media queries for different screen sizes */
+
+/* Desktop optimizations - 768px and up */
+@media (min-width: 768px) {
+    .container {
+        padding: 60px 50px;
+    }
+
+    .lyrics-display h1 {
+        font-size: 56px;
+        margin-bottom: 12px;
+    }
+
+    .lyric-line {
+        font-size: 28px;
+        padding: 40px 32px;
+        min-height: 140px;
+    }
+
+    .line-number {
+        width: 80px;
+        height: 80px;
+        font-size: 36px;
+    }
+}
+
+/* Tablet optimizations - Up to 767px */
+@media (max-width: 767px) {
+    .container {
+        padding: 30px 24px;
+        margin: 20px auto;
+        border-radius: 18px;
+    }
+
+    .container::before {
+        left: 24px;
+        right: 24px;
+    }
+
+    .container::after {
+        display: none;
+    }
+
+    .lyrics-display {
+        margin-bottom: 35px;
+    }
+
+    .lyrics-display h1 {
+        font-size: 36px;
+        margin-bottom: 8px;
+    }
+
+    .lyrics-display h1::before,
+    .lyrics-display h1::after {
+        display: none;
+    }
+
+    .progress-display {
+        font-size: 12px;
+        margin-bottom: 30px;
+        gap: 8px;
+    }
+
+    .progress-display::before,
+    .progress-display::after {
+        font-size: 10px;
+    }
+
+    .lyric-container {
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+    .line-number {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .lyric-line {
+        font-size: 20px;
+        padding: 24px 20px;
+        min-height: 100px;
+        line-height: 1.8;
+    }
+
+    .controls {
+        gap: 8px;
+        padding-top: 15px;
+    }
+
+    .btn {
+        padding: 11px 20px;
+        font-size: 12px;
+        letter-spacing: 0.6px;
+        min-width: 110px;
+        flex: 1;
+    }
+
+    .play-btn {
+        flex: 1.2;
+        min-width: 120px;
+    }
+}
+
+/* Mobile optimizations - Up to 480px */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 24px 16px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+    }
+
+    .container::before {
+        left: 16px;
+        right: 16px;
+        height: 1px;
+    }
+
+    .lyrics-display h1 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .progress-display {
+        font-size: 11px;
+        margin-bottom: 24px;
+        gap: 6px;
+    }
+
+    .lyric-container {
+        gap: 12px;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .line-number {
+        width: 56px;
+        height: 56px;
+        font-size: 22px;
+        box-shadow: var(--shadow-light);
+    }
+
+    .lyric-line {
+        font-size: 18px;
+        padding: 20px 16px;
+        min-height: 90px;
+        width: 100%;
+        line-height: 1.8;
+    }
+
+    .controls {
+        gap: 6px;
+        padding-top: 12px;
+    }
+
+    .btn {
+        padding: 10px 14px;
+        font-size: 11px;
+        letter-spacing: 0.4px;
+        min-width: 85px;
+        font-weight: 600;
+        flex: 1;
+    }
+
+    .play-btn {
+        flex: 1.1;
+        min-width: 90px;
+    }
+
+    .play-btn::after {
+        right: 10px;
+        width: 1.5px;
+    }
+
+    .keyboard-hints {
+        font-size: 10px;
+        margin-top: 16px;
+    }
+
+    .keyboard-hints .hint {
+        padding: 1px 6px;
+        font-size: 9px;
+    }
+}
+
+/* Landscape orientation - Small height screens */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container {
+        padding: 25px 35px;
+    }
+
+    .lyrics-display {
+        margin-bottom: 15px;
+    }
+
+    .lyrics-display h1 {
+        font-size: 28px;
+        margin-bottom: 4px;
+    }
+
+    .progress-display {
+        margin-bottom: 12px;
+        font-size: 11px;
+    }
+
+    .lyric-line {
+        font-size: 16px;
+        padding: 14px 18px;
+        min-height: 50px;
+    }
+
+    .line-number {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+    }
+
+    .controls {
+        gap: 6px;
+    }
+
+    .btn {
+        padding: 7px 14px;
+        font-size: 11px;
+    }
+}
+
+/* Print styles */
+@media print {
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .container {
+        box-shadow: none;
+        border: 1px solid var(--grace-gold);
+    }
+
+    .controls {
+        display: none;
+    }
+}
+
+/* Accessibility - Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .lyric-container.updating .line-number {
+        transform: none;
+    }
+}
