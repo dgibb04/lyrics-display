@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics Display</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="lyrics-display">
+            <h1>Amazing Grace</h1>
+            <div class="lyric-line" id="lyricLine">
+                Loading lyrics...
+            </div>
+            <div class="line-counter">
+                <span id="currentLine">0</span> / <span id="totalLines">0</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prevBtn" class="btn">Previous</button>
+            <button id="playBtn" class="btn play-btn">Play</button>
+            <button id="nextBtn" class="btn">Next</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
