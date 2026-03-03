@@ -4,6 +4,8 @@ let isPlaying = false;
 let playIntervalId = null;
 
 const lyricLine = document.getElementById('lyricLine');
+const lineNumber = document.getElementById('lineNumber');
+const lyricContainer = document.querySelector('.lyric-container');
 const currentLineSpan = document.getElementById('currentLine');
 const totalLinesSpan = document.getElementById('totalLines');
 const prevBtn = document.getElementById('prevBtn');
@@ -35,18 +37,37 @@ function displayLine(index) {
     if (index < 0 || index >= lyrics.length) return;
 
     currentLineIndex = index;
-    currentLineSpan.textContent = index + 1;
+    const lineNum = index + 1;
 
-    // Add fade-in animation
+    // Update progress display
+    currentLineSpan.textContent = lineNum;
+
+    // Update line number display
+    lineNumber.textContent = lineNum;
+
+    // Trigger scale animation on line number
+    lyricContainer.classList.remove('updating');
+    void lyricContainer.offsetWidth; // Trigger reflow to restart animation
+    lyricContainer.classList.add('updating');
+
+    // Add fade-in animation to lyric text
     lyricLine.classList.remove('fade-in');
     void lyricLine.offsetWidth; // Trigger reflow to restart animation
     lyricLine.classList.add('fade-in');
 
     lyricLine.textContent = lyrics[index];
 
-    // Update button states
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === lyrics.length - 1;
+    // Update button states based on position and play status
+    updateButtonStates();
+}
+
+// Update button states based on position and play status
+function updateButtonStates() {
+    const isAtStart = currentLineIndex === 0;
+    const isAtEnd = currentLineIndex === lyrics.length - 1;
+
+    prevBtn.disabled = isAtStart || isPlaying;
+    nextBtn.disabled = isAtEnd || isPlaying;
 }
 
 // Move to next line
@@ -79,9 +100,8 @@ function togglePlay() {
 function startPlay() {
     isPlaying = true;
     playBtn.classList.add('playing');
-    playBtn.textContent = 'Stop';
-    prevBtn.disabled = true;
-    nextBtn.disabled = true;
+    playBtn.textContent = 'Pause';
+    updateButtonStates();
 
     // Advance to next line immediately, then every 2 seconds
     playIntervalId = setInterval(() => {
@@ -105,9 +125,8 @@ function stopPlay() {
         playIntervalId = null;
     }
 
-    // Re-enable buttons
-    prevBtn.disabled = currentLineIndex === 0;
-    nextBtn.disabled = currentLineIndex === lyrics.length - 1;
+    // Update button states
+    updateButtonStates();
 }
 
 // Event listeners

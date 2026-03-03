@@ -35,6 +35,41 @@ body {
     letter-spacing: 1px;
 }
 
+.progress-display {
+    color: #667eea;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.lyric-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.line-number {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.lyric-container.updating .line-number {
+    transform: scale(1.1);
+}
+
 .lyric-line {
     background: #f8f9fa;
     border-left: 4px solid #667eea;
@@ -47,7 +82,7 @@ body {
     align-items: center;
     justify-content: center;
     line-height: 1.6;
-    margin-bottom: 20px;
+    flex-grow: 1;
     transition: all 0.3s ease;
 }
 
@@ -64,12 +99,6 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.line-counter {
-    color: #999;
-    font-size: 14px;
-    font-weight: 500;
 }
 
 .controls {
@@ -141,6 +170,21 @@ body {
     .lyrics-display h1 {
         font-size: 22px;
         margin-bottom: 20px;
+    }
+
+    .progress-display {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .lyric-container {
+        gap: 15px;
+    }
+
+    .line-number {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
     }
 
     .lyric-line {
