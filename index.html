@@ -33,6 +33,22 @@
             <button id="nextBtn" class="btn" title="Next (→ or click)">Next</button>
         </div>
 
+        <div class="speed-control">
+            <label for="speedSlider">Playback Speed:</label>
+            <div class="speed-display">
+                <span id="speedValue">1.0</span>x
+            </div>
+            <input
+                type="range"
+                id="speedSlider"
+                min="0.25"
+                max="2"
+                step="0.25"
+                value="1"
+                title="Adjust playback speed (0.25x - 2x)"
+            >
+        </div>
+
         <div class="keyboard-hints">
             <span class="hint">Spacebar</span> Play/Pause •
             <span class="hint">←/→</span> Navigate

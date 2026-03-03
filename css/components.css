@@ -85,6 +85,114 @@
     box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
+/* Speed Control Component */
+.speed-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(245, 243, 240, 0.5) 0%, rgba(217, 205, 196, 0.2) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.speed-control label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--grace-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.speed-display {
+    font-weight: 700;
+    color: var(--grace-gold);
+    font-size: 14px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.speed-display span {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+}
+
+/* Range Slider Input */
+#speedSlider {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(90deg, var(--grace-light), var(--grace-gold));
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Slider Thumb - Chrome, Safari, Edge */
+#speedSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--grace-gold), #d4a574);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.4);
+    transition: var(--transition);
+}
+
+#speedSlider::-webkit-slider-thumb:hover {
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.6);
+}
+
+#speedSlider::-webkit-slider-thumb:active {
+    transform: scale(0.95);
+}
+
+/* Slider Thumb - Firefox */
+#speedSlider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--grace-gold), #d4a574);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.4);
+    transition: var(--transition);
+}
+
+#speedSlider::-moz-range-thumb:hover {
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.6);
+}
+
+#speedSlider::-moz-range-thumb:active {
+    transform: scale(0.95);
+}
+
+/* Slider Track - Firefox */
+#speedSlider::-moz-range-track {
+    background: transparent;
+    border: none;
+}
+
+#speedSlider::-moz-range-progress {
+    background: linear-gradient(90deg, var(--grace-light), var(--grace-gold));
+    height: 6px;
+    border-radius: 5px;
+}
+
 /* Keyboard Hints Styling */
 .keyboard-hints .hint {
     background: var(--bg-subtle);

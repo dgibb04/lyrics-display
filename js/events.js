@@ -1,8 +1,23 @@
 /* Amazing Grace - Event Handling */
 /* Button click handlers and keyboard event listeners */
 
-import { DOM } from './state.js';
-import { nextLine, previousLine, togglePlay } from './display.js';
+import { DOM, state } from './state.js';
+import { nextLine, previousLine, togglePlay, restartPlayback } from './display.js';
+
+/**
+ * Handle speed slider changes
+ * @param {Event} e - The change event
+ */
+function handleSpeedChange(e) {
+    // Update playback speed state (convert string to number)
+    state.playbackSpeed = parseFloat(e.target.value);
+
+    // Update display
+    DOM.speedValue.textContent = state.playbackSpeed.toFixed(2);
+
+    // If currently playing, restart with new speed
+    restartPlayback();
+}
 
 /**
  * Setup all event listeners for buttons and keyboard
@@ -12,6 +27,10 @@ function setupEventListeners() {
     DOM.prevBtn.addEventListener('click', previousLine);
     DOM.nextBtn.addEventListener('click', nextLine);
     DOM.playBtn.addEventListener('click', togglePlay);
+
+    // Speed control slider
+    DOM.speedSlider.addEventListener('change', handleSpeedChange);
+    DOM.speedSlider.addEventListener('input', handleSpeedChange);
 
     // Global keyboard event listener
     document.addEventListener('keydown', handleKeyboardInput);

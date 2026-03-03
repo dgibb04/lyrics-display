@@ -78,7 +78,11 @@ function startPlay() {
     DOM.playBtn.textContent = 'Pause';
     updateButtonStates();
 
-    // Advance to next line every PLAYBACK_DELAY milliseconds
+    // Calculate delay based on playback speed
+    // At 1.0x speed: 2000ms, at 2.0x: 1000ms, at 0.5x: 4000ms
+    const adjustedDelay = 2000 / state.playbackSpeed;
+
+    // Advance to next line every adjustedDelay milliseconds
     state.playIntervalId = setInterval(() => {
         if (state.currentLineIndex < state.lyrics.length - 1) {
             nextLine();
@@ -86,7 +90,7 @@ function startPlay() {
             // Stop at the end
             stopPlay();
         }
-    }, 2000); // 2-second delay between lines
+    }, adjustedDelay);
 }
 
 /**
@@ -117,6 +121,16 @@ function togglePlay() {
     }
 }
 
+/**
+ * Restart playback with new speed (if currently playing)
+ */
+function restartPlayback() {
+    if (state.isPlaying) {
+        stopPlay();
+        startPlay();
+    }
+}
+
 export {
     displayLine,
     nextLine,
@@ -124,5 +138,6 @@ export {
     startPlay,
     stopPlay,
     togglePlay,
+    restartPlayback,
     updateButtonStates,
 };

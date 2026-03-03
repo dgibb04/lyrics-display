@@ -13,6 +13,7 @@ const state = {
     currentLineIndex: 0,
     isPlaying: false,
     playIntervalId: null,
+    playbackSpeed: 1.0, // 1.0 = normal speed, 0.5 = half speed, 2.0 = double speed
 };
 
 // DOM element references
@@ -28,6 +29,10 @@ const DOM = {
     prevBtn: document.getElementById('prevBtn'),
     playBtn: document.getElementById('playBtn'),
     nextBtn: document.getElementById('nextBtn'),
+
+    // Speed control
+    speedSlider: document.getElementById('speedSlider'),
+    speedValue: document.getElementById('speedValue'),
 };
 
 // Export for use in other modules

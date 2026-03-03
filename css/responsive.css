@@ -102,6 +102,22 @@
         flex: 1.2;
         min-width: 120px;
     }
+
+    .speed-control {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 12px;
+    }
+
+    .speed-control label {
+        font-size: 12px;
+    }
+
+    #speedSlider {
+        min-width: 120px;
+        max-width: 100%;
+    }
 }
 
 /* Mobile optimizations - Up to 480px */
