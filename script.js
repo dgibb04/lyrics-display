@@ -27,7 +27,7 @@ async function loadLyrics() {
             displayLine(0);
         }
     } catch (error) {
-        lyricLine.textContent = 'Error loading lyrics. Make sure lyrics.txt is in the same directory.';
+        lyricLine.innerHTML = '<span>Error loading lyrics. Make sure lyrics.txt is in the same directory.</span>';
         console.error('Error loading lyrics:', error);
     }
 }
@@ -55,7 +55,7 @@ function displayLine(index) {
     void lyricLine.offsetWidth; // Trigger reflow to restart animation
     lyricLine.classList.add('fade-in');
 
-    lyricLine.textContent = lyrics[index];
+    lyricLine.innerHTML = `<span>${lyrics[index]}</span>`;
 
     // Update button states based on position and play status
     updateButtonStates();
