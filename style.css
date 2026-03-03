@@ -600,6 +600,16 @@ body::after {
         right: 10px;
         width: 1.5px;
     }
+
+    .keyboard-hints {
+        font-size: 10px;
+        margin-top: 16px;
+    }
+
+    .keyboard-hints .hint {
+        padding: 1px 6px;
+        font-size: 9px;
+    }
 }
 
 /* Landscape orientation */
@@ -659,6 +669,27 @@ body::after {
     .controls {
         display: none;
     }
+}
+
+/* Keyboard shortcuts hint */
+.keyboard-hints {
+    text-align: center;
+    font-size: 12px;
+    color: var(--grace-light);
+    margin-top: 20px;
+    font-family: 'Lora', serif;
+    letter-spacing: 0.5px;
+}
+
+.keyboard-hints .hint {
+    background: var(--bg-subtle);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    display: inline-block;
+    margin: 0 4px;
+    font-weight: 500;
+    color: var(--grace-medium);
 }
 
 /* Accessibility - Reduced motion */

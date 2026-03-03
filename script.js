@@ -129,10 +129,40 @@ function stopPlay() {
     updateButtonStates();
 }
 
-// Event listeners
+// Event listeners - Button clicks
 prevBtn.addEventListener('click', previousLine);
 nextBtn.addEventListener('click', nextLine);
 playBtn.addEventListener('click', togglePlay);
+
+// Keyboard event listeners
+document.addEventListener('keydown', (e) => {
+    // Prevent conflicts with text input
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return;
+    }
+
+    // Spacebar for Play/Pause
+    if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+    }
+
+    // Right arrow for Next
+    if (e.code === 'ArrowRight') {
+        e.preventDefault();
+        if (!nextBtn.disabled) {
+            nextLine();
+        }
+    }
+
+    // Left arrow for Previous
+    if (e.code === 'ArrowLeft') {
+        e.preventDefault();
+        if (!prevBtn.disabled) {
+            previousLine();
+        }
+    }
+});
 
 // Load lyrics on page load
 loadLyrics();
